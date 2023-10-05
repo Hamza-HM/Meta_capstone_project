@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'littlelemon.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,14 +79,20 @@ WSGI_APPLICATION = 'littlelemon.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'littlelemon',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'USER': 'admindjango',
-        'PASSWORD': 'employee@123!'
+        'OPTIONS': {  
+            'read_default_file': os.path.join(BASE_DIR, 'my.cnf'),
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }
     }
 }
+# other important configuration settings
+# CONN_MAX_AGE: This parameter defines the maximum lifetime of a connection. The default value is 0, which preserves the historical behavior of closing the database connection at the end of each request. 
 
+# To enable persistent connections, set CONN_MAX_AGE to a positive integer of seconds. For unlimited persistent connections, you can set it to None. 
+
+# AUTOCOMMIT: Default: True. Set this to False to disable Django's transaction management and implement your own. 
+
+# OPTIONS: Default: {} (Empty dictionary). Extra parameters to use when connecting to the database. Available parameters vary depending on your database backend. 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -105,6 +112,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# The settings for media files have been updated for the Graded assessment
+MEDIA_URL = '/media/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -121,8 +130,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'restaurant', 'static'),
+]
+
+
+STATIC_ROOT = Path.joinpath(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
