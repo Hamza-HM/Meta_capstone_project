@@ -6,6 +6,11 @@ ALSO USING PIPENV CUZ VENV TAKES A LOT OF TIME TO UPLOAD AND DOWNLOAD
 if you have no menu items on your mysql database please create a superuser 
 and connect to the django admin panel and create some bookings and menu items
 
+TESTS:
+
+to run tests do: py manage.py test littlelemon/tests/
+
+'py' because i'm using python 3.11
 
 static html is in 
 
