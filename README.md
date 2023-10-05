@@ -1,10 +1,13 @@
 # Meta-backend!
+UPDATE the my.cnf with your mysql credentials
+
 NOTE:
 YOU HAVE TO BE AUTHENTICATED WITH TOKEN
 ALSO USING PIPENV CUZ VENV TAKES A LOT OF TIME TO UPLOAD AND DOWNLOAD
 
 if you have no menu items on your mysql database please create a superuser 
 and connect to the django admin panel and create some bookings and menu items
+
 
 TESTS:
 
