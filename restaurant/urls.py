@@ -11,6 +11,6 @@ urlpatterns = [
     path('menu-items/', views.MenuItemsView.as_view(), name='menu-item-list'),
     path('menu-items/<int:pk>', views.SingleMenuItemView.as_view(), name='menu-item-detail'),
     path('booking/', include(router.urls)),
-    path('api-auth-token', obtain_auth_token)
+    path('api-auth-token', obtain_auth_token),
 ]
 # urlpatterns += [static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)]
